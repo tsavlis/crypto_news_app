@@ -1,19 +1,19 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import App from "./src";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import promiseMiddleware from "redux-promise";
+import reducers from "./src/store/reducers";
+import React from "react";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const createStoreWithMiddleware = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(promiseMiddleware))
+);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const appRedux = () => (
+  <Provider store={createStoreWithMiddleware}>
+    <App />
+  </Provider>
+);
+export default appRedux;
