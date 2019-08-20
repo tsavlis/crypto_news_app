@@ -26,7 +26,7 @@ export function getGames() {
 }
 
 const url =
-  "https://newsapi.org/v2/everything?q=bitcoin&from=2019-07-15&sortBy=publishedAt&apiKey=25470e1aac5b44b889cf7bc59276e55a";
+  "https://newsapi.org/v2/everything?q=bitcoin&from=2019-07-20&sortBy=publishedAt&apiKey=25470e1aac5b44b889cf7bc59276e55a";
 
 export async function getNews() {
   let result = await fetch(url).then(response => response.json());
